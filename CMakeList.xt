@@ -1,0 +1,27 @@
+cmake_minimum_required(VERSION 3.20)
+project(AdventureGame)
+
+set(CMAKE_CXX_STANDARD 17)
+
+# --- SFML 3.0.0 ---
+set(SFML_DIR "C:/SFML-3.0.0/lib/cmake/SFML")
+find_package(SFML 3.0 COMPONENTS Graphics Audio Window System REQUIRED)
+
+# --- SQLite ---
+include_directories("C:/SQLite")
+
+add_executable(AdventureGame
+    src/main.cpp
+    src/database_manager.cpp
+    src/story_manager.cpp
+)
+
+target_include_directories(AdventureGame PRIVATE include)
+
+target_link_libraries(AdventureGame PRIVATE
+    SFML::Graphics
+    SFML::Audio
+    SFML::Window
+    SFML::System
+    "C:/SQLite/sqlite3.lib"
+)
